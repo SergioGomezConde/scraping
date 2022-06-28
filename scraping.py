@@ -32,8 +32,28 @@ driver.find_element(by=By.NAME, value='adAS_submit').click()
 driver.implicitly_wait(10)
 driver.find_element(by=By.XPATH, value='/html/body/div[1]/div/a[1]').click()
 
+# Acceso al perfil
+URLPerfil = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/header/div/div/div/div[1]/div[1]/div/div[1]/a').get_attribute('href')
+driver.get(URLPerfil)
 
+# Acceso a la seccion de detalles
+driver.implicitly_wait(10)
+driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[2]/a').click()
 
+# Obtencion del email
+time.sleep(2)
+email = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/div/div[2]/div/div/div/section[1]/div/ul/li[2]/dl/dd/a').text
+
+# Almacenamiento de la informacion en el fichero JSON
+informacion['usuario'].append({
+        'email': email,
+})
+
+with open(ficheroJSON, 'w') as ficheroDatos:
+    json.dump(informacion, ficheroDatos, indent=4)
+
+###
+##
 # Acceso a la seccion de mensajes
 driver.get('https://campusvirtual.uva.es/message/index.php')
 
