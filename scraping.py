@@ -61,11 +61,15 @@ i = 0
 # Almacenamiento de la informacion en el fichero JSON
 for elemento in elementos:
     nombre_asignatura = elemento.text.split(' (')[0].capitalize()
+    codigo_asignatura = elemento.text.split(' (')[1].split(')')[0]
+    enlace_asignatura = elemento.get_attribute('href')
 #     if (nombre_asignatura != "") and ("Grado en" not in nombre_asignatura):
     if (nombre_asignatura != ""):
         informacion['asignaturas'].append({
             'nombre': nombre_asignatura,
-            'porcentaje': porcentajes[i].get_attribute('data-progress')
+            'porcentaje': porcentajes[i].get_attribute('data-progress'),
+            'codigo': codigo_asignatura,
+            'enlace': enlace_asignatura
         })
         i = i + 1
 
