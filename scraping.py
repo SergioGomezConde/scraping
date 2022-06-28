@@ -55,7 +55,7 @@ time.sleep(2)
 elementos = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/div/div[1]').find_elements(by=By.TAG_NAME, value='a')
 
 # Obtencion de los porcentajes
-porcentajes = driver.find_elements(by=By.CLASS_NAME, value='progress-circle').get_attribute('data-progress')
+porcentajes = driver.find_elements(by=By.CLASS_NAME, value='progress-circle')
 i = 0
 
 # Almacenamiento de la informacion en el fichero JSON
@@ -65,7 +65,7 @@ for elemento in elementos:
     if (nombre_asignatura != ""):
         informacion['asignaturas'].append({
             'nombre': nombre_asignatura,
-            'porcentaje': porcentajes[i]
+            'porcentaje': porcentajes[i].get_attribute('data-progress')
         })
         i = i + 1
 
