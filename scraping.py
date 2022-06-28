@@ -64,7 +64,7 @@ for elemento in elementos:
 #     if (nombre_asignatura != "") and ("Grado en" not in nombre_asignatura):
     if (nombre_asignatura != ""):
         informacion['asignaturas'].append({
-            'nombre': elemento.text.split(' (')[0].capitalize(),
+            'nombre': nombre_asignatura,
             'porcentaje': porcentajes[i]
         })
         i = i + 1
