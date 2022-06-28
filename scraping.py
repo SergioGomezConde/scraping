@@ -35,6 +35,9 @@ driver.find_element(by=By.XPATH, value='/html/body/div[1]/div/a[1]').click()
 # Acceso al perfil
 URLPerfil = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/header/div/div/div/div[1]/div[1]/div/div[1]/a').get_attribute('href')
 driver.get(URLPerfil)
+
+# Obtencion del nombre
+nombre_perfil = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[1]/div/div[1]/h3').text
            
 # Acceso a la seccion de asignaturas
 time.sleep(2)
@@ -64,7 +67,8 @@ email = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div
 
 # Almacenamiento de la informacion en el fichero JSON
 informacion['usuario'].append({
-        'email': email,
+           'nombre': nombre_perfil,
+           'email': email
 })
 
 with open(ficheroJSON, 'w') as ficheroDatos:
