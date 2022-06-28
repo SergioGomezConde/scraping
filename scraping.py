@@ -6,6 +6,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
+# Funcion que formatea el nombre obtenido desde Campus para que sea mas legible
+def formatear_nombre(nombre_a_formatear):
+    nombres = nombre_a_formatear.split(' ')
+    nombre_formateado = nombres[2].capitalize() + " " + nombres[0].capitalize() + " " + nombres[1].split(',')[
+        0].capitalize()
+    return nombre_formateado
+
 # Fichero JSON donde almacenar la informacion
 ficheroJSON = "/home/serggom/scraping/data.json"
 informacion = {'asignaturas': [], 'usuario': [], 'eventos': [], 'siguiente_evento': [], 'mensajes': []}
@@ -67,7 +74,7 @@ email = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div
 
 # Almacenamiento de la informacion en el fichero JSON
 informacion['usuario'].append({
-           'nombre': nombre_perfil,
+           'nombre': formatear_nombre(nombre_perfil),
            'email': email
 })
 
