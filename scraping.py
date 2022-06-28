@@ -118,7 +118,7 @@ for elemento in elementos:
         
         informacion['asignaturas'].append({
             'nombre': nombre_asignatura,
-            'porcentaje': porcentajes[i].get_attribute('data-progress'),
+            'porcentaje': porcentajes[i].get_attribute('data-progress'), #TODO: ver si cambiar
             'plan': plan_asignatura,
             'codigo': codigo_asignatura,
             'enlace': enlace_asignatura
@@ -187,18 +187,21 @@ driver.get('https://campusvirtual.uva.es/calendar/view.php?view=upcoming')
 
 # Obtencion de la lista de eventos proximos
 eventos_siguientes = driver.find_elements(by=By.CLASS_NAME, value='event')
-print("Hay siguiente evento: " + str(len(eventos_siguientes)))
+if len(eventos_siguientes) > 0:
+    # Almacenamiento de la informacion en el fichero JSON
+    fecha = str(formatear_fecha(eventos_siguientes[0].find_element(by=By.CLASS_NAME, value='col-11').text.split(" » ")[0])).split(" a las ")
+    informacion['siguiente_evento'].append({
+        'nombre': eventos_siguientes[0].find_element(by=By.TAG_NAME, value='h3').text,
+        'fecha': fecha[0],
+        'hora': fecha[1]
+    })
 
-# Almacenamiento de la informacion en el fichero JSON
-fecha = str(formatear_fecha(eventos_siguientes[0].find_element(by=By.CLASS_NAME, value='col-11').text.split(" » ")[0])).split(" a las ")
-informacion['siguiente_evento'].append({
-    'nombre': eventos_siguientes[0].find_element(by=By.TAG_NAME, value='h3').text,
-    'fecha': fecha[0],
-    'hora': fecha[1]
-})
-
-with open(ficheroJSON, 'w') as ficheroDatos:
-    json.dump(informacion, ficheroDatos, indent=4)
+    with open(ficheroJSON, 'w') as ficheroDatos:
+        json.dump(informacion, ficheroDatos, indent=4)
+        
+with open(ficheroJSON) as ficheroUsuario:
+        data = json.load(ficheroUsuario)
+        print(len(data['siguiente_evento']))
 
 ficheroDatos.close()
 
