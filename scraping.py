@@ -34,7 +34,7 @@ driver.find_element(by=By.XPATH, value='/html/body/div[1]/div/a[1]').click()
 
 # Acceso al perfil
 URLPerfil = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/header/div/div/div/div[1]/div[1]/div/div[1]/a').get_attribute('href')
-driver.get(URLPerfil
+driver.get(URLPerfil)
            
 # Acceso a la seccion de asignaturas
 time.sleep(2)
