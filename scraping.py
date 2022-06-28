@@ -6,6 +6,52 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
+def numero_a_mes(x):  # Funcion que devuelve el numero de mes introducido de manera escrita
+    return{
+        '1': "enero",
+        '2': "febrero",
+        '3': "marzo",
+        '4': "abril",
+        '5': "mayo",
+        '6': "junio",
+        '7': "julio",
+        '8': "agosto",
+        '9': "septiembre",
+        '10': "octubre",
+        '11': "noviembre",
+        '12': "diciembre",
+    }[x]
+
+
+# Funcion para dar formato a una fecha y devolverla en la respuesta
+def formatear_fecha(fecha_a_formatear):
+    fecha_separada = fecha_a_formatear.split(", ")
+    dia_semana = fecha_separada[0]
+    if (dia_semana == "Hoy"):
+        hora = fecha_separada[1]
+        dia = date.today().day
+        mes = date.today().month
+        anio = date.today().year
+        fecha_formateada = str(dia) + " de " + numero_a_mes(str(mes)) + " del " + str(anio) + " a las " + str(hora)
+
+    elif (dia_semana == "Mañana"):
+        hora = fecha_separada[1]
+        dia = date.today().day
+        mes = date.today().month
+        anio = date.today().year
+        # fecha_formateada = str(dia) + " de " + numero_a_mes(str(mes)) + " del " + str(anio) + " a las " + str(hora)
+        fecha_formateada = str(dia) + "/" + str(mes) + "/" + str(anio) + " a las " + str(hora)
+
+    else:
+        hora = fecha_separada[2]
+        mes_dia = fecha_separada[1].split(" ")
+        dia = mes_dia[0]
+        mes = mes_dia[1]
+        anio = date.today().year
+        fecha_formateada = str(dia) + " de " + numero_a_mes(str(mes)) + " del " + str(anio) + " a las " + str(hora)
+
+    return fecha_formateada
+
 # Funcion que formatea el nombre obtenido desde Campus para que sea mas legible
 def formatear_nombre(nombre_a_formatear):
     nombres = nombre_a_formatear.split(' ')
