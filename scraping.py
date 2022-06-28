@@ -60,7 +60,7 @@ i = 0
 
 # Almacenamiento de la informacion en el fichero JSON
 for elemento in elementos:
-    print(elemento)
+    print(elemento.text)
     nombre_asignatura = elemento.text.split(' (')[0].capitalize()
 #     codigo_asignatura = elemento.text.split(' (')[1].split(')').split('-')[3]
 #     enlace_asignatura = elemento.get_attribute('href')
