@@ -187,6 +187,7 @@ driver.get('https://campusvirtual.uva.es/calendar/view.php?view=upcoming')
 
 # Obtencion de la lista de eventos proximos
 eventos_siguientes = driver.find_elements(by=By.CLASS_NAME, value='event')
+print("Hay siguiente evento: " + len(eventos_siguientes))
 
 # Almacenamiento de la informacion en el fichero JSON
 fecha = str(formatear_fecha(eventos_siguientes[0].find_element(by=By.CLASS_NAME, value='col-11').text.split(" » ")[0])).split(" a las ")
