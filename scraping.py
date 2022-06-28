@@ -64,12 +64,14 @@ for elemento in elementos:
     
 #     if (nombre_asignatura != "") and ("Grado en" not in nombre_asignatura):
     if (nombre_asignatura != ""):
+        plan_asignatura = elemento.text.split('-')[2]
         codigo_asignatura = elemento.text.split('-')[3]
         enlace_asignatura = elemento.get_attribute('href')
         
         informacion['asignaturas'].append({
             'nombre': nombre_asignatura,
             'porcentaje': porcentajes[i].get_attribute('data-progress'),
+            'plan': plan_asignatura,
             'codigo': codigo_asignatura,
             'enlace': enlace_asignatura
         })
