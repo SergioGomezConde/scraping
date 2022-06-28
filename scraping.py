@@ -63,7 +63,7 @@ for elemento in elementos:
     nombre_asignatura = elemento.text.split(' (')[0].capitalize()
     codigo_asignatura = elemento.text.split('-')[3]
 
-#     print(len(codigo_asignatura))
+    print(codigo_asignatura)
 #     enlace_asignatura = elemento.get_attribute('href')
 #     if (nombre_asignatura != "") and ("Grado en" not in nombre_asignatura):
     if (nombre_asignatura != ""):
