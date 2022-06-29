@@ -89,96 +89,96 @@ driver.find_element(by=By.NAME, value='adAS_submit').click()
 driver.implicitly_wait(10)
 driver.find_element(by=By.XPATH, value='/html/body/div[1]/div/a[1]').click()
 
-# Acceso al perfil
-URLPerfil = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/header/div/div/div/div[1]/div[1]/div/div[1]/a').get_attribute('href')
-driver.get(URLPerfil)
+# # Acceso al perfil
+# URLPerfil = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/header/div/div/div/div[1]/div[1]/div/div[1]/a').get_attribute('href')
+# driver.get(URLPerfil)
 
-# Obtencion del nombre
-nombre_perfil = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[1]/div/div[1]/h3').text
+# # Obtencion del nombre
+# nombre_perfil = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[1]/div/div[1]/h3').text
            
-# Acceso a la seccion de asignaturas
-time.sleep(2)
-driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[1]/a').click()
+# # Acceso a la seccion de asignaturas
+# time.sleep(2)
+# driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[1]/a').click()
 
-# Obtencion de las asignaturas
-time.sleep(2)
-elementos = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/div/div[1]').find_elements(by=By.TAG_NAME, value='a')
+# # Obtencion de las asignaturas
+# time.sleep(2)
+# elementos = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/div/div[1]').find_elements(by=By.TAG_NAME, value='a')
 
-# Obtencion de los porcentajes
-porcentajes = driver.find_elements(by=By.CLASS_NAME, value='progress-circle')
-i = 0
+# # Obtencion de los porcentajes
+# porcentajes = driver.find_elements(by=By.CLASS_NAME, value='progress-circle')
+# i = 0
 
-# Almacenamiento de la informacion en el fichero JSON
-for elemento in elementos:
-    nombre_asignatura = elemento.text.split(' (')[0].capitalize()
+# # Almacenamiento de la informacion en el fichero JSON
+# for elemento in elementos:
+#     nombre_asignatura = elemento.text.split(' (')[0].capitalize()
     
-#     if (nombre_asignatura != "") and ("Grado en" not in nombre_asignatura):
-    if (nombre_asignatura != ""):
-        plan_asignatura = elemento.text.split('-')[2]
-        codigo_asignatura = elemento.text.split('-')[3]
-        enlace_asignatura = elemento.get_attribute('href')
+# #     if (nombre_asignatura != "") and ("Grado en" not in nombre_asignatura):
+#     if (nombre_asignatura != ""):
+#         plan_asignatura = elemento.text.split('-')[2]
+#         codigo_asignatura = elemento.text.split('-')[3]
+#         enlace_asignatura = elemento.get_attribute('href')
         
-        informacion['asignaturas'].append({
-            'nombre': nombre_asignatura,
-            'porcentaje': porcentajes[i].get_attribute('data-progress'), #TODO: ver si cambiar
-            'plan': plan_asignatura,
-            'codigo': codigo_asignatura,
-            'enlace': enlace_asignatura
-        })
+#         informacion['asignaturas'].append({
+#             'nombre': nombre_asignatura,
+#             'porcentaje': porcentajes[i].get_attribute('data-progress'), #TODO: ver si cambiar
+#             'plan': plan_asignatura,
+#             'codigo': codigo_asignatura,
+#             'enlace': enlace_asignatura
+#         })
         
-        i = i + 1
+#         i = i + 1
 
-with open(ficheroJSON, 'w') as ficheroDatos:
-        json.dump(informacion, ficheroDatos, indent=4)           
+# with open(ficheroJSON, 'w') as ficheroDatos:
+#         json.dump(informacion, ficheroDatos, indent=4)           
            
-# Acceso a la seccion de detalles
-driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[2]/a').click()
+# # Acceso a la seccion de detalles
+# driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[2]/a').click()
 
-# Obtencion del email
-time.sleep(2)
-email = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/div/div[2]/div/div/div/section[1]/div/ul/li[2]/dl/dd/a').text
+# # Obtencion del email
+# time.sleep(2)
+# email = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/div/div[2]/div/div/div/section[1]/div/ul/li[2]/dl/dd/a').text
 
-# Almacenamiento de la informacion en el fichero JSON
-informacion['usuario'].append({
-           'nombre': formatear_nombre(nombre_perfil),
-           'email': email
-})
+# # Almacenamiento de la informacion en el fichero JSON
+# informacion['usuario'].append({
+#            'nombre': formatear_nombre(nombre_perfil),
+#            'email': email
+# })
 
-with open(ficheroJSON, 'w') as ficheroDatos:
-    json.dump(informacion, ficheroDatos, indent=4)
+# with open(ficheroJSON, 'w') as ficheroDatos:
+#     json.dump(informacion, ficheroDatos, indent=4)
 
-###
-##
-# Acceso a la seccion de mensajes
-driver.get('https://campusvirtual.uva.es/message/index.php')
+# ###
+# ##
+# # Acceso a la seccion de mensajes
+# driver.get('https://campusvirtual.uva.es/message/index.php')
 
-# Obtencion del numero de mensajes totales sin leer
-time.sleep(10)
-numeroMensajes = str(driver.find_element(by=By.XPATH, value='/html/body/nav/ul[2]/div[3]/a/div').get_attribute('aria-label').split(' ')[1])
+# # Obtencion del numero de mensajes totales sin leer
+# time.sleep(10)
+# numeroMensajes = str(driver.find_element(by=By.XPATH, value='/html/body/nav/ul[2]/div[3]/a/div').get_attribute('aria-label').split(' ')[1])
 
-time.sleep(20)
+# time.sleep(20)
 
-# Obtencion de los distintos numeros de mensajes
-total_destacados = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/button/small').get_attribute('aria-label').split(' ')[0])
-destacados_sin_leer = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/button/span[5]').get_attribute('aria-label').split(' ')[1])
-total_grupo = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[2]/div[1]/button/small').get_attribute('aria-label').split(' ')[0])
-grupo_sin_leer = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[2]/div[1]/button/span[5]').get_attribute('aria-label').split(' ')[1])
-total_privados = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/small').get_attribute('aria-label').split(' ')[0])
-privados_sin_leer = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/span[5]').get_attribute('aria-label').split(' ')[1])
+# # Obtencion de los distintos numeros de mensajes
+# total_destacados = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/button/small').get_attribute('aria-label').split(' ')[0])
+# destacados_sin_leer = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/button/span[5]').get_attribute('aria-label').split(' ')[1])
+# total_grupo = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[2]/div[1]/button/small').get_attribute('aria-label').split(' ')[0])
+# grupo_sin_leer = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[2]/div[1]/button/span[5]').get_attribute('aria-label').split(' ')[1])
+# total_privados = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/small').get_attribute('aria-label').split(' ')[0])
+# privados_sin_leer = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/span[5]').get_attribute('aria-label').split(' ')[1])
         
-# Almacenamiento de la informacion en el fichero JSON
-informacion['mensajes'].append({
-    'totales_sin_leer': str(numeroMensajes),
-    'total_destacados': total_destacados,
-    'destacados_sin_leer': destacados_sin_leer,
-    'total_grupo': total_grupo,
-    'grupo_sin_leer': grupo_sin_leer,
-    'total_privados': total_privados,
-    'privados_sin_leer': privados_sin_leer
-})
+# # Almacenamiento de la informacion en el fichero JSON
+# informacion['mensajes'].append({
+#     'totales_sin_leer': str(numeroMensajes),
+#     'total_destacados': total_destacados,
+#     'destacados_sin_leer': destacados_sin_leer,
+#     'total_grupo': total_grupo,
+#     'grupo_sin_leer': grupo_sin_leer,
+#     'total_privados': total_privados,
+#     'privados_sin_leer': privados_sin_leer
+# })
         
-with open(ficheroJSON, 'w') as ficheroDatos:
-        json.dump(informacion, ficheroDatos, indent=4)
+# with open(ficheroJSON, 'w') as ficheroDatos:
+#         json.dump(informacion, ficheroDatos, indent=4)
 
 ###
 ##
