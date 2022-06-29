@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from fileinput import close
 import time
 import json
@@ -7,8 +9,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from datetime import datetime
 from datetime import date
-
-locale.setlocale(locale.LC_ALL, 'es_ES')
 
 def numero_a_mes(x):  # Funcion que devuelve el numero de mes introducido de manera escrita
     return{
