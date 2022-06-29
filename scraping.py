@@ -8,6 +8,8 @@ from selenium.webdriver.common.by import By
 from datetime import datetime
 from datetime import date
 
+locale.setlocale(locale.LC_ALL, 'es_ES')
+
 def numero_a_mes(x):  # Funcion que devuelve el numero de mes introducido de manera escrita
     return{
         '1': "enero",
