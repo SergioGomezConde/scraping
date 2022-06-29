@@ -209,7 +209,7 @@ ficheroDatosJSON.close()
 if len(eventos_siguientes) > 0:
     # Almacenamiento de la informacion en el fichero JSON
     fecha = str(formatear_fecha(eventos_siguientes[0].find_element(by=By.CLASS_NAME, value='col-11').text.split(" » ")[0])).split(" a las ")
-    informacion['siguiente_evento'].append({
+    contenidoJSON['siguiente_evento'].append({
         'nombre': eventos_siguientes[0].find_element(by=By.TAG_NAME, value='h3').text,
         'fecha': fecha[0],
         'hora': fecha[1]
