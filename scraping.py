@@ -137,7 +137,7 @@ for elemento in elementos:
         i = i + 1
 
 with open(ficheroJSON_asignaturas, 'w') as ficheroAsignaturas:
-        json.dump(ficheroJSON_asignaturas, ficheroAsignaturas, indent=4)           
+        json.dump(informacion_asignaturas, ficheroAsignaturas, indent=4)           
            
 ficheroAsignaturas.close()
             
