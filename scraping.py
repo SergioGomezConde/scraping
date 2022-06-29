@@ -194,6 +194,9 @@ informacion['siguiente_evento'].append({
     'numero': len(eventos_siguientes)
 })
 
+with open(ficheroJSON, 'w') as ficheroDatos:
+    json.dump(informacion, ficheroDatos, indent=4)
+
 # Comprobacion de que exista algun evento proximo
 if len(eventos_siguientes) > 0:
     # Almacenamiento de la informacion en el fichero JSON
