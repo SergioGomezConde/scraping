@@ -191,14 +191,14 @@ driver.get('https://campusvirtual.uva.es/calendar/view.php?view=upcoming')
 eventos_siguientes = driver.find_elements(by=By.CLASS_NAME, value='event')
 
 # Comprobacion de que exista algun evento proximo
-# if len(eventos_siguientes) > 0:
+if len(eventos_siguientes) > 0:
     # Almacenamiento de la informacion en el fichero JSON
-fecha = str(formatear_fecha(eventos_siguientes[0].find_element(by=By.CLASS_NAME, value='col-11').text.split(" » ")[0])).split(" a las ")
-informacion['siguiente_evento'].append({
-    'nombre': eventos_siguientes[0].find_element(by=By.TAG_NAME, value='h3').text,
-    'fecha': fecha[0],
-    'hora': fecha[1]
-})
+    fecha = str(formatear_fecha(eventos_siguientes[0].find_element(by=By.CLASS_NAME, value='col-11').text.split(" » ")[0])).split(" a las ")
+    informacion['siguiente_evento'].append({
+        'nombre': eventos_siguientes[0].find_element(by=By.TAG_NAME, value='h3').text,
+        'fecha': fecha[0],
+        'hora': fecha[1]
+    })
 
 with open(ficheroJSON, 'w') as ficheroDatos:
     json.dump(informacion, ficheroDatos, indent=4) #TODO: ver si poner solo una vez al final
