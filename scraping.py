@@ -65,7 +65,7 @@ def formatear_nombre(nombre_a_formatear):
 
 # Fichero JSON donde almacenar la informacion
 ficheroJSON = 'datos.json'
-contenidoJSON = {'asignaturas': [], 'usuario': [], 'eventos': [], 'siguiente_evento': [] 'mensajes': []}
+contenidoJSON = {'asignaturas': [], 'usuario': [], 'eventos': [], 'siguiente_evento': [], 'mensajes': []}
 
 # Datos de acceso fijos
 usuario = 'e71180769r'
