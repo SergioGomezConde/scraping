@@ -154,7 +154,7 @@ informacion_usuario['usuario'].append({
            'email': email
 })
 
-with open(ficheroJSON, 'w') as ficheroUsuario:
+with open(ficheroJSON_usuario, 'w') as ficheroUsuario:
     json.dump(informacion_usuario, ficheroUsuario, indent=4)
 
 ficheroUsuario.close()
