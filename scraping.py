@@ -131,7 +131,7 @@ for elemento in elementos:
 with open(ficheroJSON, 'w') as ficheroDatosJSON:
     json.dump(contenidoJSON, ficheroDatosJSON, indent=4)           
            
-ficheroJSON.close()
+ficheroDatosJSON.close()
             
 # Acceso a la seccion de detalles
 driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[2]/a').click()
@@ -149,7 +149,7 @@ contenidoJSON['usuario'].append({
 with open(ficheroJSON, 'w') as ficheroDatosJSON:
     json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
 
-ficheroJSON.close()
+ficheroDatosJSON.close()
     
 ###
 ##
@@ -184,7 +184,7 @@ contenidoJSON['mensajes'].append({
 with open(ficheroJSON, 'w') as ficheroDatosJSON:
     json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
         
-ficheroJSON.close()
+ficheroDatosJSON.close()
 
 ###
 ##
@@ -203,7 +203,7 @@ contenidoJSON['siguiente_evento'].append({
 with open(ficheroJSON, 'w') as ficheroDatosJSON:
     json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
     
-ficheroJSON.close()
+ficheroDatosJSON.close()
 
 # Comprobacion de que exista algun evento proximo
 if len(eventos_siguientes) > 0:
@@ -218,7 +218,7 @@ if len(eventos_siguientes) > 0:
 with open(ficheroJSON, 'w') as ficheroDatosJSON:
     json.dump(contenidoJSON, ficheroDatosJSON, indent=4) #TODO: ver si poner solo una vez al final
     
-ficheroJSON.close() 
+ficheroDatosJSON.close()
 
 driver.close()
 
