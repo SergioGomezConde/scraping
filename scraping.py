@@ -128,8 +128,8 @@ for elemento in elementos:
         
         i = i + 1
 
-with open(ficheroJSON, 'w'):
-    json.dump(contenidoJSON, ficheroJSON, indent=4)           
+with open(ficheroJSON, 'w') as ficheroDatosJSON:
+    json.dump(contenidoJSON, ficheroDatosJSON, indent=4)           
            
 ficheroJSON.close()
             
@@ -146,8 +146,8 @@ contenidoJSON['usuario'].append({
            'email': email
 })
 
-with open(ficheroJSON, 'w'):
-    json.dump(contenidoJSON, ficheroJSON, indent=4)
+with open(ficheroJSON, 'w') as ficheroDatosJSON:
+    json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
 
 ficheroJSON.close()
     
@@ -181,8 +181,8 @@ contenidoJSON['mensajes'].append({
     'privados_sin_leer': privados_sin_leer
 })
         
-with open(ficheroJSON, 'w'):
-    json.dump(contenidoJSON, ficheroJSON, indent=4)
+with open(ficheroJSON, 'w') as ficheroDatosJSON:
+    json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
         
 ficheroJSON.close()
 
@@ -200,8 +200,8 @@ contenidoJSON['siguiente_evento'].append({
     'numero': len(eventos_siguientes)
 })
 
-with open(ficheroJSON, 'w'):
-    json.dump(contenidoJSON, ficheroJSON, indent=4)
+with open(ficheroJSON, 'w') as ficheroDatosJSON:
+    json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
     
 ficheroJSON.close()
 
@@ -215,8 +215,8 @@ if len(eventos_siguientes) > 0:
         'hora': fecha[1]
     })
 
-with open(ficheroJSON, 'w'):
-    json.dump(contenidoJSON, ficheroJSON, indent=4) #TODO: ver si poner solo una vez al final
+with open(ficheroJSON, 'w') as ficheroDatosJSON:
+    json.dump(contenidoJSON, ficheroDatosJSON, indent=4) #TODO: ver si poner solo una vez al final
     
 ficheroJSON.close() 
 
