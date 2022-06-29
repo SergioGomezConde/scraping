@@ -1,5 +1,3 @@
-# coding=utf-8
-
 from fileinput import close
 import time
 import json
