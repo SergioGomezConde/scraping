@@ -64,16 +64,8 @@ def formatear_nombre(nombre_a_formatear):
     return nombre_formateado
 
 # Fichero JSON donde almacenar la informacion
-ficheroJSON_asignaturas = "/home/serggom/scraping/ficherosJSON/asignaturas.json"
-ficheroJSON_usuario = "/home/serggom/scraping/ficherosJSON/usuario.json"
-ficheroJSON_eventos = "/home/serggom/scraping/ficherosJSON/eventos.json"
-ficheroJSON_siguiente_evento = "/home/serggom/scraping/ficherosJSON/siguiente_evento.json"
-ficheroJSON_mensajes = "/home/serggom/scraping/ficherosJSON/mensajes.json"
-informacion_asignaturas = {'asignaturas': []}
-informacion_usuario = {'usuario': []}
-informacion_eventos = {'eventos': []}
-informacion_siguiente_evento = {'siguiente_evento': []}
-informacion_mensajes = {'mensajes': []}
+ficheroJSON = 'datos.json'
+contenidoJSON = {'asignaturas': [], 'usuario': [], 'eventos': [], 'mensajes': []}
 
 # Datos de acceso fijos
 usuario = 'e71180769r'
@@ -126,7 +118,7 @@ for elemento in elementos:
         codigo_asignatura = elemento.text.split('-')[3]
         enlace_asignatura = elemento.get_attribute('href')
         
-        informacion_asignaturas['asignaturas'].append({
+        contenidoJSON['asignaturas'].append({
             'nombre': nombre_asignatura,
             'porcentaje': porcentajes[i].get_attribute('data-progress'), #TODO: ver si cambiar
             'plan': plan_asignatura,
@@ -136,10 +128,10 @@ for elemento in elementos:
         
         i = i + 1
 
-with open(ficheroJSON_asignaturas, 'w') as ficheroAsignaturas:
-        json.dump(informacion_asignaturas, ficheroAsignaturas, indent=4)           
+with open(ficheroJSON, 'w'):
+    json.dump(contenidoJSON, ficheroJSON, indent=4)           
            
-ficheroAsignaturas.close()
+ficheroJSON.close()
             
 # Acceso a la seccion de detalles
 driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[2]/a').click()
@@ -149,15 +141,15 @@ time.sleep(2)
 email = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/div/div[2]/div/div/div/section[1]/div/ul/li[2]/dl/dd/a').text
 
 # Almacenamiento de la informacion en el fichero JSON
-informacion_usuario['usuario'].append({
+contenidoJSON['usuario'].append({
            'nombre': formatear_nombre(nombre_perfil),
            'email': email
 })
 
-with open(ficheroJSON_usuario, 'w') as ficheroUsuario:
-    json.dump(informacion_usuario, ficheroUsuario, indent=4)
+with open(ficheroJSON, 'w'):
+    json.dump(contenidoJSON, ficheroJSON, indent=4)
 
-ficheroUsuario.close()
+ficheroJSON.close()
     
 ###
 ##
@@ -179,7 +171,7 @@ total_privados = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/d
 privados_sin_leer = str(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/span[5]').get_attribute('aria-label').split(' ')[1])
         
 # Almacenamiento de la informacion en el fichero JSON
-informacion_mensajes['mensajes'].append({
+contenidoJSON['mensajes'].append({
     'totales_sin_leer': str(numeroMensajes),
     'total_destacados': total_destacados,
     'destacados_sin_leer': destacados_sin_leer,
@@ -189,10 +181,10 @@ informacion_mensajes['mensajes'].append({
     'privados_sin_leer': privados_sin_leer
 })
         
-with open(ficheroJSON_mensajes, 'w') as ficheroMensajes:
-        json.dump(informacion_mensajes, ficheroMensajes, indent=4)
+with open(ficheroJSON, 'w'):
+    json.dump(contenidoJSON, ficheroJSON, indent=4)
         
-ficheroMensajes.close()
+ficheroJSON.close()
 
 ###
 ##
@@ -204,14 +196,14 @@ driver.get('https://campusvirtual.uva.es/calendar/view.php?view=upcoming')
 # Obtencion de la lista de eventos proximos
 eventos_siguientes = driver.find_elements(by=By.CLASS_NAME, value='event')
 
-informacion_siguiente_evento['siguiente_evento'].append({
+contenidoJSON['siguiente_evento'].append({
     'numero': len(eventos_siguientes)
 })
 
-with open(ficheroJSON_siguiente_evento, 'w') as ficheroSiguienteEvento:
-    json.dump(informacion_siguiente_evento, ficheroSiguienteEvento, indent=4)
+with open(ficheroJSON, 'w'):
+    json.dump(contenidoJSON, ficheroJSON, indent=4)
     
-ficheroSiguienteEvento.close()
+ficheroJSON.close()
 
 # Comprobacion de que exista algun evento proximo
 if len(eventos_siguientes) > 0:
@@ -223,10 +215,10 @@ if len(eventos_siguientes) > 0:
         'hora': fecha[1]
     })
 
-with open(ficheroJSON_siguiente_evento, 'w') as ficheroSiguienteEvento:
-    json.dump(informacion_siguiente_evento, ficheroSiguienteEvento, indent=4) #TODO: ver si poner solo una vez al final
-
-ficheroSiguienteEvento.close()
+with open(ficheroJSON, 'w'):
+    json.dump(contenidoJSON, ficheroJSON, indent=4) #TODO: ver si poner solo una vez al final
+    
+ficheroJSON.close() 
 
 driver.close()
 
