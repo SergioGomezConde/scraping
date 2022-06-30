@@ -186,13 +186,15 @@ driver.get('https://campusvirtual.uva.es/calendar/view.php?view=upcoming')
 # Obtencion de la lista de eventos proximos
 eventos_siguientes = driver.find_elements(by=By.CLASS_NAME, value='event')
 
-# Almacenamiento de la informacion en el fichero JSON
-fecha = str(formatear_fecha(eventos_siguientes[0].find_element(by=By.CLASS_NAME, value='col-11').text.split(" » ")[0])).split(" a las ")
-contenidoJSON['siguiente_evento'].append({
-    'nombre': eventos_siguientes[0].find_element(by=By.TAG_NAME, value='h3').text,
-    'fecha': fecha[0],
-    'hora': fecha[1]
-})
+# Comprobacion de que hay eventos proximos
+if len(eventos_siguientes) > 0:
+    # Almacenamiento de la informacion en el fichero JSON
+    fecha = str(formatear_fecha(eventos_siguientes[0].find_element(by=By.CLASS_NAME, value='col-11').text.split(" » ")[0])).split(" a las ")
+    contenidoJSON['siguiente_evento'].append({
+        'nombre': eventos_siguientes[0].find_element(by=By.TAG_NAME, value='h3').text,
+        'fecha': fecha[0],
+        'hora': fecha[1]
+    })
 
 # Acceso al dia actual en el calendario
 driver.get('https://campusvirtual.uva.es/calendar/view.php?view=day')
