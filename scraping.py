@@ -54,6 +54,16 @@ def formatear_fecha(fecha_a_formatear):
 
     return fecha_formateada
 
+# Funcion para dar formato a una hora y devolverla en la respuesta
+def formatear_hora(hora_a_formatear):
+    hora_separada = hora_a_formatear.split(", ")
+    if(hora_separada[0] == "Mañana" or hora_separada[0] == "Hoy"):
+        hora = hora_separada[1]
+    else:
+        hora = hora_separada[2]
+
+    return hora
+
 # Funcion que formatea el nombre obtenido desde Campus para que sea mas legible
 def formatear_nombre(nombre_a_formatear):
     nombres = nombre_a_formatear.split(' ')
@@ -220,7 +230,7 @@ for evento in eventos_dia:
     contenidoJSON['eventos_hoy'].append({
         'nombre': evento.find_element(by=By.TAG_NAME, value='h3').text,
         'fecha': fecha_a_buscar,
-        'hora': formatear_fecha(evento.find_element(by=By.CLASS_NAME, value='col-11').text.split(
+        'hora': formatear_hora(evento.find_element(by=By.CLASS_NAME, value='col-11').text.split(
         " » ")[0])
     })
     
