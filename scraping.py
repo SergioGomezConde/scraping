@@ -58,11 +58,11 @@ def formatear_fecha(fecha_a_formatear):
 def formatear_hora(hora_a_formatear):
     hora_separada = hora_a_formatear.split(", ")
     if(hora_separada[0] == "Mañana" or hora_separada[0] == "Hoy"):
-        hora = hora_separada[1]
+        hora_formateada = hora_separada[1]
     else:
-        hora = hora_separada[2]
+        hora_formateada = hora_separada[2]
 
-    return hora
+    return hora_formateada
 
 # Funcion que formatea el nombre obtenido desde Campus para que sea mas legible
 def formatear_nombre(nombre_a_formatear):
