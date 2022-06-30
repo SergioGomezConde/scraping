@@ -63,7 +63,7 @@ def formatear_nombre(nombre_a_formatear):
 
 # Fichero JSON donde almacenar la informacion
 ficheroJSON = '/home/serggom/scraping/datos.json'
-contenidoJSON = {'asignaturas': [], 'usuario': [], 'eventos': [], 'siguiente_evento': [], 'mensajes': []}
+contenidoJSON = {'asignaturas': [], 'usuario': [], 'eventos': [], 'siguiente_evento': [], 'eventos_hoy': [], 'mensajes': []}
 
 # Datos de acceso fijos
 usuario = 'e71180769r'
@@ -204,8 +204,28 @@ if len(eventos_siguientes) > 0:
         'hora': fecha[1]
     })
 
+# Acceso al dia actual en el calendario
+driver.get('https://campusvirtual.uva.es/calendar/view.php?view=day')
+
+numero_dia = date.today().day
+numero_mes = date.today().month
+numero_anio = date.today().year
+fecha_a_buscar = str(numero_dia) + "/" + str(numero_mes) + "/" + str(numero_anio)
+
+
+# Obtencion de la lista de eventos del dia
+eventos_dia = driver.find_elements(by=By.CLASS_NAME, value='event')
+
+for evento in eventos_dia:
+    contenidoJSON['eventos_hoy'].append({
+        'nombre': evento.find_element(by=By.TAG_NAME, value='h3').text,
+        'fecha': fecha_a_buscar,
+        'hora': formatear_fecha(evento.find_element(by=By.CLASS_NAME, value='col-11').text.split(
+        " » ")[0])
+    })
+    
 with open(ficheroJSON, 'w') as ficheroDatosJSON:
-    json.dump(contenidoJSON, ficheroDatosJSON, indent=4) #TODO: ver si poner solo una vez al final
+    json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
     
 ficheroDatosJSON.close()
 
