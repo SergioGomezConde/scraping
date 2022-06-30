@@ -210,7 +210,7 @@ contenidoJSON['siguiente_evento'].append({
     'nombre': eventos_siguientes[0].find_element(by=By.TAG_NAME, value='h3').text,
     'fecha': fecha[0],
     'hora': fecha[1]
- 
+})
 
 # Acceso al dia actual en el calendario
 driver.get('https://campusvirtual.uva.es/calendar/view.php?view=day')
