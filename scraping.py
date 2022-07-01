@@ -137,7 +137,7 @@ driver.find_element(by=By.XPATH,
 time.sleep(2)
 email = driver.find_element(by=By.XPATH,
                             value='/html/body/div[4]/div[2]/div/div/section/'
-                                  'div/div/div/div[2]/div/div/div/div[2]/div/div/div/section[1]/div/ul/li[2]/dl/dd/a')\
+                                  'div/div/div/div[2]/div/div/div/div[2]/div/div/div/section[1]/div/ul/li[2]/dl/dd/a') \
     .text
 
 # Almacenamiento de la informacion en el fichero JSON
@@ -158,23 +158,30 @@ numeroMensajes = str(
 time.sleep(20)
 
 # Obtencion de los distintos numeros de mensajes
+xpath_base = '/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/'
+
 total_destacados = str(driver.find_element(by=By.XPATH,
-                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/button/small').get_attribute(
+                                           value=xpath_base + 'div[1]/div[1]/button/small').get_attribute(
     'aria-label').split(' ')[0])
+
 destacados_sin_leer = str(driver.find_element(by=By.XPATH,
-                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/button/span[5]').get_attribute(
+                                              value=xpath_base + 'div[1]/div[1]/button/span[5]').get_attribute(
     'aria-label').split(' ')[1])
+
 total_grupo = str(driver.find_element(by=By.XPATH,
-                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[2]/div[1]/button/small').get_attribute(
+                                      value=xpath_base + 'div[2]/div[1]/button/small').get_attribute(
     'aria-label').split(' ')[0])
+
 grupo_sin_leer = str(driver.find_element(by=By.XPATH,
-                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[2]/div[1]/button/span[5]').get_attribute(
+                                         value=xpath_base + 'div[2]/div[1]/button/span[5]').get_attribute(
     'aria-label').split(' ')[1])
+
 total_privados = str(driver.find_element(by=By.XPATH,
-                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/small').get_attribute(
+                                         value=xpath_base + 'div[3]/div[1]/button/small').get_attribute(
     'aria-label').split(' ')[0])
+
 privados_sin_leer = str(driver.find_element(by=By.XPATH,
-                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/span[5]').get_attribute(
+                                            value=xpath_base + 'div[3]/div[1]/button/span[5]').get_attribute(
     'aria-label').split(' ')[1])
 
 # Almacenamiento de la informacion en el fichero JSON
