@@ -11,14 +11,14 @@ from selenium.webdriver.common.by import By
 def formatear_fecha(fecha_a_formatear):
     fecha_separada = fecha_a_formatear.split(", ")
     dia_semana = fecha_separada[0]
-    if (dia_semana == "Hoy"):
+    if dia_semana == "Hoy":
         hora = fecha_separada[1]
         dia = date.today().day
         mes = date.today().month
         anio = date.today().year
         fecha_formateada = str(dia) + "/" + str(mes) + "/" + str(anio) + " a las " + str(hora)
 
-    elif (dia_semana == "Mañana"):
+    elif dia_semana == "Mañana":
         hora = fecha_separada[1]
         dia = date.today().day
         mes = date.today().month
@@ -39,7 +39,7 @@ def formatear_fecha(fecha_a_formatear):
 # Funcion para dar formato a una hora y devolverla en la respuesta
 def formatear_hora(hora_a_formatear):
     hora_separada = hora_a_formatear.split(", ")
-    if (hora_separada[0] == "Mañana" or hora_separada[0] == "Hoy"):
+    if hora_separada[0] == "Mañana" or hora_separada[0] == "Hoy":
         hora_formateada = hora_separada[1]
     else:
         hora_formateada = hora_separada[2]
@@ -84,24 +84,27 @@ driver.find_element(by=By.XPATH, value='/html/body/div[1]/div/a[1]').click()
 
 # Acceso al perfil
 URLPerfil = driver.find_element(by=By.XPATH,
-                                value='/html/body/div[4]/div[2]/header/div/div/div/div[1]/div[1]/div/div[1]/a').get_attribute(
-    'href')
+                                value='/html/body/div[4]/div[2]/header/div/div/div/div[1]/div[1]/div/div[1]/a') \
+    .get_attribute('href')
 driver.get(URLPerfil)
 
 # Obtencion del nombre
 nombre_perfil = driver.find_element(by=By.XPATH,
-                                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[1]/div/div[1]/h3').text
+                                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[1]/div/div[1]/h3') \
+    .text
 
 # Acceso a la seccion de asignaturas
 time.sleep(2)
 driver.find_element(by=By.XPATH,
-                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[1]/a').click()
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[1]/a') \
+    .click()
 
 # Obtencion de las asignaturas
 time.sleep(2)
 elementos = driver.find_element(by=By.XPATH,
-                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/div/div[1]').find_elements(
-    by=By.TAG_NAME, value='a')
+                                value='/html/body/div[4]/div[2]/div/div/section/'
+                                      'div/div/div/div[2]/div/div/div/div[1]') \
+    .find_elements(by=By.TAG_NAME, value='a')
 
 # Obtencion de los porcentajes
 porcentajes = driver.find_elements(by=By.CLASS_NAME, value='progress-circle')
@@ -111,8 +114,7 @@ i = 0
 for elemento in elementos:
     nombre_asignatura = elemento.text.split(' (')[0].capitalize()
 
-    #     if (nombre_asignatura != "") and ("Grado en" not in nombre_asignatura):
-    if (nombre_asignatura != ""):
+    if (nombre_asignatura != "") and ("Grado en" not in nombre_asignatura):
         plan_asignatura = elemento.text.split('-')[2]
         codigo_asignatura = elemento.text.split('-')[3]
         enlace_asignatura = elemento.get_attribute('href')
@@ -134,7 +136,9 @@ driver.find_element(by=By.XPATH,
 # Obtencion del email
 time.sleep(2)
 email = driver.find_element(by=By.XPATH,
-                            value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/div/div[2]/div/div/div/section[1]/div/ul/li[2]/dl/dd/a').text
+                            value='/html/body/div[4]/div[2]/div/div/section/'
+                                  'div/div/div/div[2]/div/div/div/div[2]/div/div/div/section[1]/div/ul/li[2]/dl/dd/a')\
+    .text
 
 # Almacenamiento de la informacion en el fichero JSON
 contenidoJSON['usuario'].append({
@@ -155,22 +159,22 @@ time.sleep(20)
 
 # Obtencion de los distintos numeros de mensajes
 total_destacados = str(driver.find_element(by=By.XPATH,
-                                           value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/button/small').get_attribute(
+                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/button/small').get_attribute(
     'aria-label').split(' ')[0])
 destacados_sin_leer = str(driver.find_element(by=By.XPATH,
-                                              value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/button/span[5]').get_attribute(
+                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/button/span[5]').get_attribute(
     'aria-label').split(' ')[1])
 total_grupo = str(driver.find_element(by=By.XPATH,
-                                      value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[2]/div[1]/button/small').get_attribute(
+                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[2]/div[1]/button/small').get_attribute(
     'aria-label').split(' ')[0])
 grupo_sin_leer = str(driver.find_element(by=By.XPATH,
-                                         value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[2]/div[1]/button/span[5]').get_attribute(
+                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[2]/div[1]/button/span[5]').get_attribute(
     'aria-label').split(' ')[1])
 total_privados = str(driver.find_element(by=By.XPATH,
-                                         value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/small').get_attribute(
+                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/small').get_attribute(
     'aria-label').split(' ')[0])
 privados_sin_leer = str(driver.find_element(by=By.XPATH,
-                                            value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/span[5]').get_attribute(
+                                                value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[1]/button/span[5]').get_attribute(
     'aria-label').split(' ')[1])
 
 # Almacenamiento de la informacion en el fichero JSON
