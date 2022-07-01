@@ -127,11 +127,6 @@ for elemento in elementos:
 
         i = i + 1
 
-# with open(ficheroJSON, 'w') as ficheroDatosJSON:
-#     json.dump(contenidoJSON, ficheroDatosJSON, indent=4)           
-
-# ficheroDatosJSON.close()
-
 # Acceso a la seccion de detalles
 driver.find_element(by=By.XPATH,
                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[2]/a').click()
@@ -147,13 +142,6 @@ contenidoJSON['usuario'].append({
     'email': email
 })
 
-# with open(ficheroJSON, 'w') as ficheroDatosJSON:
-#     json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
-
-# ficheroDatosJSON.close()
-
-###
-##
 # Acceso a la seccion de mensajes
 driver.get('https://campusvirtual.uva.es/message/index.php')
 
@@ -186,7 +174,7 @@ privados_sin_leer = str(driver.find_element(by=By.XPATH,
     'aria-label').split(' ')[1])
 
 # Almacenamiento de la informacion en el fichero JSON
-contenidoJSON['mensajes'].append({
+contenidoJSON['numero_mensajes'].append({
     'totales_sin_leer': str(numeroMensajes),
     'total_destacados': total_destacados,
     'destacados_sin_leer': destacados_sin_leer,
@@ -195,15 +183,6 @@ contenidoJSON['mensajes'].append({
     'total_privados': total_privados,
     'privados_sin_leer': privados_sin_leer
 })
-
-# with open(ficheroJSON, 'w') as ficheroDatosJSON:
-#     json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
-
-# ficheroDatosJSON.close()
-
-###
-##
-# Acceso a la seccion de calendario
 
 # Acceso al calendario en vista de eventos proximos
 driver.get('https://campusvirtual.uva.es/calendar/view.php?view=upcoming')
