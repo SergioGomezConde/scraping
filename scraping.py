@@ -52,11 +52,13 @@ def formatear_nombre(nombre_a_formatear):
     nombres = nombre_a_formatear.split(' ')
     nombre_formateado = nombres[2].capitalize() + " " + nombres[0].capitalize() + " " + nombres[1].split(',')[
         0].capitalize()
+
     return nombre_formateado
 
 
 # Fichero JSON donde almacenar la informacion
 ficheroJSON = '/home/serggom/scraping/datos.json'
+ficheroEventosACrearJSON = '/home/serggom/scraping/evento_a_crear.json'
 contenidoJSON = {'asignaturas': [], 'usuario': [], 'eventos': [], 'siguiente_evento': [], 'eventos_hoy': [],
                  'numero_mensajes': []}
 
