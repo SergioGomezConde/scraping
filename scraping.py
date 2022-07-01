@@ -58,7 +58,7 @@ def formatear_nombre(nombre_a_formatear):
 # Fichero JSON donde almacenar la informacion
 ficheroJSON = '/home/serggom/scraping/datos.json'
 contenidoJSON = {'asignaturas': [], 'usuario': [], 'eventos': [], 'siguiente_evento': [], 'eventos_hoy': [],
-                 'mensajes': []}
+                 'numero_mensajes': []}
 
 # Datos de acceso fijos
 usuario = 'e71180769r'
