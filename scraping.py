@@ -226,11 +226,21 @@ for vevent in calendario.walk('vevent'):
     numero_minuto = hora[1]
     hora_a_guardar = numero_hora + ":" + numero_minuto
 
-    contenidoJSON['eventos'].append({
-        'nombre': nombre_a_guardar,
-        'fecha': fecha_a_guardar,
-        'hora': hora_a_guardar
-    })
+    if (numero_anio > date.today().year) or \
+            ((numero_anio == date.today().year) and (numero_mes > date.today().month)) or \
+            ((numero_anio == date.today().year) and (numero_mes == date.today().month) and (
+                    numero_dia > date.today().day)) or \
+            ((numero_anio == date.today().year) and (numero_mes == date.today().month) and (
+                    numero_dia == date.today().day) and (numero_hora > date.today().hour)) or \
+            ((numero_anio == date.today().year) and (numero_mes == date.today().month) and (
+                    numero_dia == date.today().day) and (numero_hora > date.today().hour) and (
+                     numero_minuto > date.today().minute)):
+
+        contenidoJSON['eventos'].append({
+            'nombre': nombre_a_guardar,
+            'fecha': fecha_a_guardar,
+            'hora': hora_a_guardar
+        })
 
 with open(ficheroJSON, 'w') as ficheroDatosJSON:
     json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
