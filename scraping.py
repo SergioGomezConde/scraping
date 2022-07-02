@@ -227,9 +227,6 @@ for vevent in calendario.walk('vevent'):
     numero_minuto = hora[1]
     hora_a_guardar = numero_hora + ":" + numero_minuto
 
-    print(fecha_a_guardar)
-    print(hora_a_guardar)
-
     numero_dia_a_comparar = int(numero_dia)
     numero_mes_a_comparar = int(numero_mes)
     numero_anio_a_comparar = int(numero_anio)
@@ -246,7 +243,6 @@ for vevent in calendario.walk('vevent'):
             ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
                     numero_dia_a_comparar == now.day) and (numero_hora_a_comparar == now.hour) and (
                      numero_minuto_a_comparar > now.minute)):
-
         contenidoJSON['eventos'].append({
             'nombre': nombre_a_guardar,
             'fecha': fecha_a_guardar,
