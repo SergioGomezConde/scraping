@@ -227,22 +227,22 @@ for vevent in calendario.walk('vevent'):
     numero_minuto = hora[1]
     hora_a_guardar = numero_hora + ":" + numero_minuto
 
-    numero_dia = int(numero_dia)
-    numero_mes = int(numero_mes)
-    numero_anio = int(numero_anio)
-    numero_hora = int(numero_hora)
-    numero_minuto = int(numero_minuto)
+    numero_dia_a_comparar = int(numero_dia)
+    numero_mes_a_comparar = int(numero_mes)
+    numero_anio_a_comparar = int(numero_anio)
+    numero_hora_a_comparar = int(numero_hora)
+    numero_minuto_a_comparar = int(numero_minuto)
     now = datetime.now()
 
     if (numero_anio > now.year) or \
-            ((numero_anio == now.year) and (numero_mes > now.month)) or \
-            ((numero_anio == now.year) and (numero_mes == now.month) and (
-                    numero_dia > now.day)) or \
-            ((numero_anio == now.year) and (numero_mes == now.month) and (
-                    numero_dia == now.day) and (numero_hora > now.hour)) or \
-            ((numero_anio == now.year) and (numero_mes == now.month) and (
-                    numero_dia == now.day) and (numero_hora > now.hour) and (
-                     numero_minuto > now.minute)):
+            ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar > now.month)) or \
+            ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
+                    numero_dia_a_comparar > now.day)) or \
+            ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
+                    numero_dia_a_comparar == now.day) and (numero_hora_a_comparar > now.hour)) or \
+            ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
+                    numero_dia_a_comparar == now.day) and (numero_hora_a_comparar > now.hour) and (
+                     numero_minuto_a_comparar > now.minute)):
 
         contenidoJSON['eventos'].append({
             'nombre': nombre_a_guardar,
