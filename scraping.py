@@ -1,15 +1,16 @@
 import json
 import time
-from datetime import datetime
 
-from icalendar import Calendar
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 
-# Funcion que formatea el nombre obtenido desde Campus para que sea mas legible
 def formatear_nombre(nombre_a_formatear):
+    """
+    :param nombre_a_formatear: nombre obtenido del Campus Virtual
+    :return: nombre con un formato mas legible
+    """
     nombres = nombre_a_formatear.split(' ')
     nombre_formateado = nombres[2].capitalize() + " " + nombres[0].capitalize() + " " + nombres[1].split(',')[
         0].capitalize()
@@ -79,11 +80,14 @@ for elemento in elementos:
         plan_asignatura = elemento.text.split('-')[2]
         codigo_asignatura = elemento.text.split('-')[3]
         enlace_asignatura = elemento.get_attribute('href')
-        enlace_participantes = enlace_asignatura.split('course/view')[0] + "user/index" + enlace_asignatura.split('course/view')[1]
+        enlace_participantes = enlace_asignatura.split('course/view')[0] + "user/index" + \
+                               enlace_asignatura.split('course/view')[1]
         porcentaje_asignatura = porcentajes[i].get_attribute('data-progress')
 
         driver.get(enlace_participantes)
-        numero_participantes = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[3]/form/div/p').text.split(' ')[0]
+        # numero_participantes = driver.find_element(by=By.XPATH,
+        #                                            value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[3]/form/div/p').text.split(
+        #     ' ')[0]
 
         contenidoJSON['asignaturas'].append({
             'nombre': nombre_asignatura,
