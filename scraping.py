@@ -1,6 +1,7 @@
 import json
 import time
 from datetime import date
+from datetime import datetime
 
 from icalendar import Calendar
 from selenium import webdriver
@@ -225,22 +226,18 @@ for vevent in calendario.walk('vevent'):
     numero_hora = hora[0]
     numero_minuto = hora[1]
     hora_a_guardar = numero_hora + ":" + numero_minuto
+    
+    now = datetime.now()
 
-    numero_dia = int(numero_dia)
-    numero_mes = int(numero_mes)
-    numero_anio = int(numero_anio)
-    numero_hora = int(numero_hora)
-    numero_minuto = int(numero_minuto)
-
-    if (numero_anio > date.today().year) or \
-            ((numero_anio == date.today().year) and (numero_mes > date.today().month)) or \
-            ((numero_anio == date.today().year) and (numero_mes == date.today().month) and (
-                    numero_dia > date.today().day)) or \
-            ((numero_anio == date.today().year) and (numero_mes == date.today().month) and (
-                    numero_dia == date.today().day) and (numero_hora > date.today().hour)) or \
-            ((numero_anio == date.today().year) and (numero_mes == date.today().month) and (
-                    numero_dia == date.today().day) and (numero_hora > date.today().hour) and (
-                     numero_minuto > date.today().minute)):
+    if (numero_anio > now.year) or \
+            ((numero_anio == now.year) and (numero_mes > now.month)) or \
+            ((numero_anio == now.year) and (numero_mes == now.month) and (
+                    numero_dia > now.day)) or \
+            ((numero_anio == now.year) and (numero_mes == now.month) and (
+                    numero_dia == now.day) and (numero_hora > now.hour)) or \
+            ((numero_anio == now.year) and (numero_mes == now.month) and (
+                    numero_dia == now.day) and (numero_hora > now.hour) and (
+                     numero_minuto > now.minute)):
 
         contenidoJSON['eventos'].append({
             'nombre': nombre_a_guardar,
