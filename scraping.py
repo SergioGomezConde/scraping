@@ -226,7 +226,12 @@ for vevent in calendario.walk('vevent'):
     numero_hora = hora[0]
     numero_minuto = hora[1]
     hora_a_guardar = numero_hora + ":" + numero_minuto
-    
+
+    numero_dia = int(numero_dia)
+    numero_mes = int(numero_mes)
+    numero_anio = int(numero_anio)
+    numero_hora = int(numero_hora)
+    numero_minuto = int(numero_minuto)
     now = datetime.now()
 
     if (numero_anio > now.year) or \
