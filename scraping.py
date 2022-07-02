@@ -266,7 +266,7 @@ for vevent in calendario.walk('vevent'):
     numero_minuto = hora[1]
     hora_a_guardar = numero_hora + ":" + numero_minuto
 
-    contenidoJSON['eventos_hoy'].append({
+    contenidoJSON['eventos'].append({
             'nombre': nombre_a_guardar,
             'fecha': fecha_a_guardar,
             'hora': hora_a_guardar
