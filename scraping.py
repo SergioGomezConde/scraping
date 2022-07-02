@@ -234,7 +234,7 @@ for vevent in calendario.walk('vevent'):
     numero_minuto_a_comparar = int(numero_minuto)
     now = datetime.now()
 
-    if (numero_anio > now.year) or \
+    if (numero_anio_a_comparar > now.year) or \
             ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar > now.month)) or \
             ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
                     numero_dia_a_comparar > now.day)) or \
