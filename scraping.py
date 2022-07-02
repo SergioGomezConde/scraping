@@ -13,19 +13,13 @@ from selenium.webdriver.common.by import By
 def formatear_fecha(fecha_a_formatear):
     fecha_separada = fecha_a_formatear.split(", ")
     dia_semana = fecha_separada[0]
-    if dia_semana == "Hoy":
+    a_las = " a las "
+    if dia_semana == "Hoy" or dia_semana == "Mañana":
         hora = fecha_separada[1]
         dia = date.today().day
         mes = date.today().month
         anio = date.today().year
-        fecha_formateada = str(dia) + "/" + str(mes) + "/" + str(anio) + " a las " + str(hora)
-
-    elif dia_semana == "Mañana":
-        hora = fecha_separada[1]
-        dia = date.today().day
-        mes = date.today().month
-        anio = date.today().year
-        fecha_formateada = str(dia) + "/" + str(mes) + "/" + str(anio) + " a las " + str(hora)
+        fecha_formateada = str(dia) + "/" + str(mes) + "/" + str(anio) + a_las + str(hora)
 
     else:
         hora = fecha_separada[2]
@@ -33,7 +27,7 @@ def formatear_fecha(fecha_a_formatear):
         dia = mes_dia[0]
         mes = mes_dia[1]
         anio = date.today().year
-        fecha_formateada = str(dia) + "/" + str(mes) + "/" + str(anio) + " a las " + str(hora)
+        fecha_formateada = str(dia) + "/" + str(mes) + "/" + str(anio) + a_las + str(hora)
 
     return fecha_formateada
 
