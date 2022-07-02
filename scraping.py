@@ -75,7 +75,7 @@ i = 0
 for elemento in elementos:
     nombre_asignatura = elemento.text.split(' (')[0].capitalize()
 
-    if (nombre_asignatura != ""):
+    if nombre_asignatura != "":
         plan_asignatura = elemento.text.split('-')[2]
         codigo_asignatura = elemento.text.split('-')[3]
         enlace_asignatura = elemento.get_attribute('href')
@@ -197,7 +197,7 @@ for vevent in calendario.walk('vevent'):
     numero_minuto_a_comparar = int(numero_minuto)
     now = datetime.now()
 
-    if (numero_anio_a_comparar > now.year) or \
+    if ((numero_anio_a_comparar > now.year) or \
             ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar > now.month)) or \
             ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
                     numero_dia_a_comparar > now.day)) or \
@@ -205,7 +205,7 @@ for vevent in calendario.walk('vevent'):
                     numero_dia_a_comparar == now.day) and (numero_hora_a_comparar > now.hour)) or \
             ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
                     numero_dia_a_comparar == now.day) and (numero_hora_a_comparar == now.hour) and (
-                     numero_minuto_a_comparar > now.minute)):
+                     numero_minuto_a_comparar > now.minute))):
         contenidoJSON['eventos'].append({
             'nombre': nombre_a_guardar,
             'fecha': fecha_a_guardar,
