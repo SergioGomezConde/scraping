@@ -1,6 +1,5 @@
 import json
 import time
-from datetime import date
 from datetime import datetime
 
 from icalendar import Calendar
