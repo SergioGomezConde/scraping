@@ -217,14 +217,14 @@ for vevent in calendario.walk('vevent'):
     dateStart = str(tmp.astimezone().strftime('%Y-%m-%d %H:%M')).split(" ")
     nombre_a_guardar = vevent.get('summary')
     fecha = dateStart[0].split("-")
-    numero_dia = fecha[2]
-    numero_mes = fecha[1]
-    numero_anio = fecha[0]
+    numero_dia = int(fecha[2])
+    numero_mes = int(fecha[1])
+    numero_anio = int(fecha[0])
     fecha_a_guardar = numero_dia + "/" + numero_mes + "/" + numero_anio
     hora = dateStart[1].split(":")
-    numero_hora = hora[0]
-    numero_minuto = hora[1]
-    hora_a_guardar = numero_hora + ":" + numero_minuto
+    numero_hora = int(hora[0])
+    numero_minuto = int(hora[1])
+    hora_a_guardar = str(numero_hora) + ":" + str(numero_minuto)
 
     if (numero_anio > date.today().year) or \
             ((numero_anio == date.today().year) and (numero_mes > date.today().month)) or \
