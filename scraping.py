@@ -9,40 +9,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 
-# Funcion para dar formato a una fecha y devolverla en la respuesta
-def formatear_fecha(fecha_a_formatear):
-    fecha_separada = fecha_a_formatear.split(", ")
-    dia_semana = fecha_separada[0]
-    a_las = " a las "
-    if dia_semana == "Hoy" or dia_semana == "Mañana":
-        hora = fecha_separada[1]
-        dia = date.today().day
-        mes = date.today().month
-        anio = date.today().year
-        fecha_formateada = str(dia) + "/" + str(mes) + "/" + str(anio) + a_las + str(hora)
-
-    else:
-        hora = fecha_separada[2]
-        mes_dia = fecha_separada[1].split(" ")
-        dia = mes_dia[0]
-        mes = mes_dia[1]
-        anio = date.today().year
-        fecha_formateada = str(dia) + "/" + str(mes) + "/" + str(anio) + a_las + str(hora)
-
-    return fecha_formateada
-
-
-# Funcion para dar formato a una hora y devolverla en la respuesta
-def formatear_hora(hora_a_formatear):
-    hora_separada = hora_a_formatear.split(", ")
-    if hora_separada[0] == "Mañana" or hora_separada[0] == "Hoy":
-        hora_formateada = hora_separada[1]
-    else:
-        hora_formateada = hora_separada[2]
-
-    return hora_formateada
-
-
 # Funcion que formatea el nombre obtenido desde Campus para que sea mas legible
 def formatear_nombre(nombre_a_formatear):
     nombres = nombre_a_formatear.split(' ')
