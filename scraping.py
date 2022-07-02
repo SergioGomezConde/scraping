@@ -75,7 +75,7 @@ i = 0
 for elemento in elementos:
     nombre_asignatura = elemento.text.split(' (')[0].capitalize()
 
-    if (nombre_asignatura != "") and ("Grado en" not in nombre_asignatura):
+    if (nombre_asignatura != ""):
         plan_asignatura = elemento.text.split('-')[2]
         codigo_asignatura = elemento.text.split('-')[3]
         enlace_asignatura = elemento.get_attribute('href')
@@ -160,14 +160,17 @@ contenidoJSON['numero_mensajes'].append({
 driver.get('https://campusvirtual.uva.es/calendar/export.php?')
 
 driver.find_element(by=By.XPATH,
-                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[2]/div[2]/fieldset/div/label[1]/input').click()
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[2]/div[2]/fieldset/div/'
+                          'label[1]/input').click()
 driver.find_element(by=By.XPATH,
-                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/label[5]/input').click()
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/'
+                          'label[5]/input').click()
 
 time.sleep(2)
 
 driver.find_element(by=By.XPATH,
-                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[4]/div[2]/fieldset/div/div[2]/span/input').click()
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[4]/div[2]/fieldset/div/'
+                          'div[2]/span/input').click()
 
 time.sleep(5)
 
