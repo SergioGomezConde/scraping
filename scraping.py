@@ -79,7 +79,7 @@ for elemento in elementos:
         plan_asignatura = elemento.text.split('-')[2]
         codigo_asignatura = elemento.text.split('-')[3]
         enlace_asignatura = elemento.get_attribute('href')
-        enlace_participantes = enlace_asignatura.split('course')[0] + "user" + enlace_asignatura.split('course')[1]
+        enlace_participantes = enlace_asignatura.split('course/view')[0] + "user/index" + enlace_asignatura.split('course')[1]
         porcentaje_asignatura = porcentajes[i].get_attribute('data-progress')
 
         contenidoJSON['asignaturas'].append({
