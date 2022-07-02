@@ -2,6 +2,8 @@ import json
 import time
 from datetime import date
 
+from icalendar import Calendar
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -236,12 +238,39 @@ driver.find_element(by=By.XPATH, value='/html/body/div[1]/div/a[1]').click()
 
 driver.get('https://campusvirtual.uva.es/calendar/export.php?')
 
-driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[2]/div[2]/fieldset/div/label[1]/input').click()
-driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/label[5]/input').click()
+driver.find_element(by=By.XPATH,
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[2]/div[2]/fieldset/div/label[1]/input').click()
+driver.find_element(by=By.XPATH,
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/label[5]/input').click()
 
 time.sleep(2)
 
-driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[4]/div[2]/fieldset/div/div[2]/span/input').click()
+driver.find_element(by=By.XPATH,
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[4]/div[2]/fieldset/div/div[2]/span/input').click()
+
+time.sleep(5)
+
+c = open('icalexport.ics', 'rb')
+calendario = Calendar.from_ical(c.read())
+for vevent in calendario.walk('vevent'):
+    tmp = vevent.decoded('dtstart')
+    dateStart = str(tmp.astimezone().strftime('%Y-%m-%d %H:%M')).split(" ")
+    nombre_a_guardar = vevent.get('summary')
+    fecha = dateStart[0].split("-")
+    numero_dia = fecha[2]
+    numero_mes = fecha[1]
+    numero_anio = fecha[0]
+    fecha_a_guardar = numero_dia + "/" + numero_mes + "/" + numero_anio
+    hora = dateStart[1].split(":")
+    numero_hora = hora[0]
+    numero_minuto = hora[1]
+    hora_a_guardar = numero_hora + ":" + numero_minuto
+
+    contenidoJSON['eventos_hoy'].append({
+            'nombre': nombre_a_guardar,
+            'fecha': fecha_a_guardar,
+            'hora': hora_a_guardar
+        })
 
 with open(ficheroJSON, 'w') as ficheroDatosJSON:
     json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
