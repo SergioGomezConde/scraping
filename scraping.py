@@ -80,10 +80,11 @@ for elemento in elementos:
         plan_asignatura = elemento.text.split('-')[2]
         codigo_asignatura = elemento.text.split('-')[3]
         enlace_asignatura = elemento.get_attribute('href')
+        porcentaje_asignatura = porcentajes[i].get_attribute('data-progress')
 
         contenidoJSON['asignaturas'].append({
             'nombre': nombre_asignatura,
-            'porcentaje': porcentajes[i].get_attribute('data-progress'),  # TODO: ver si cambiar
+            'porcentaje': porcentaje_asignatura,
             'plan': plan_asignatura,
             'codigo': codigo_asignatura,
             'enlace': enlace_asignatura
