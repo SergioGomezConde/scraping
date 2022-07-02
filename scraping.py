@@ -217,5 +217,4 @@ with open(ficheroJSON, 'w') as ficheroDatosJSON:
 
 ficheroDatosJSON.close()
 
-
 driver.close()
