@@ -3,8 +3,6 @@ import time
 from datetime import date
 
 from icalendar import Calendar
-
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -61,7 +59,7 @@ def formatear_nombre(nombre_a_formatear):
 
 # Fichero JSON donde almacenar la informacion
 ficheroJSON = '/home/serggom/scraping/datos.json'
-contenidoJSON = {'asignaturas': [], 'usuario': [], 'siguiente_evento': [], 'eventos_hoy': [],
+contenidoJSON = {'asignaturas': [], 'usuario': [], 'eventos': [], 'siguiente_evento': [], 'eventos_hoy': [],
                  'numero_mensajes': []}
 
 # Datos de acceso fijos
@@ -246,7 +244,6 @@ time.sleep(2)
 
 driver.find_element(by=By.XPATH,
                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[4]/div[2]/fieldset/div/div[2]/span/input').click()
-
 
 c = open('icalexport.ics', 'rb')
 calendario = Calendar.from_ical(c.read())
