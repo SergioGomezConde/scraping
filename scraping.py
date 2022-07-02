@@ -227,6 +227,9 @@ for vevent in calendario.walk('vevent'):
     numero_minuto = hora[1]
     hora_a_guardar = numero_hora + ":" + numero_minuto
 
+    print(fecha_a_guardar)
+    print(hora_a_guardar)
+
     numero_dia_a_comparar = int(numero_dia)
     numero_mes_a_comparar = int(numero_mes)
     numero_anio_a_comparar = int(numero_anio)
