@@ -220,7 +220,7 @@ for vevent in calendario.walk('vevent'):
     numero_dia = int(fecha[2])
     numero_mes = int(fecha[1])
     numero_anio = int(fecha[0])
-    fecha_a_guardar = numero_dia + "/" + numero_mes + "/" + numero_anio
+    fecha_a_guardar = str(numero_dia) + "/" + str(numero_mes) + "/" + str(numero_anio)
     hora = dateStart[1].split(":")
     numero_hora = int(hora[0])
     numero_minuto = int(hora[1])
