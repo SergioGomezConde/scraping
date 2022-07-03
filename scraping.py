@@ -181,7 +181,7 @@ while j <= 3:
     # anio_fecha_mensaje = "20" + fecha_mensaje_separada[2]
 
     contenidoJSON['mensajes'].append({
-        'autor': autor_mensaje,
+        'autor': formatear_nombre(autor_mensaje),
         'contenido': contenido_mensaje,
         'fecha': fecha_mensaje
     })
