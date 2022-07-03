@@ -19,7 +19,7 @@ def formatear_nombre(nombre_a_formatear):
 
 # Fichero JSON donde almacenar la informacion
 ficheroJSON = '/home/serggom/scraping/datos.json'
-contenidoJSON = {'asignaturas': [], 'usuario': [], 'eventos': [], 'numero_mensajes': []}
+contenidoJSON = {'asignaturas': [], 'usuario': [], 'eventos': [], 'numero_mensajes': [], 'mensajes': []}
 
 # Datos de acceso fijos
 usuario = 'e71180769r'
@@ -157,6 +157,11 @@ contenidoJSON['numero_mensajes'].append({
     'privados_sin_leer': privados_sin_leer
 })
 
+autor_mensaje = driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[2]/div[2]/a[2]/div[1]/div/strong').text
+contenidoJSON['mensajes'].append({
+    'autor': autor_mensaje
+})
+
 driver.get('https://campusvirtual.uva.es/calendar/export.php?')
 
 driver.find_element(by=By.XPATH,
@@ -166,7 +171,6 @@ driver.find_element(by=By.XPATH,
                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/label[4]/input').click()
 
 time.sleep(2)
-
 
 driver.find_element(by=By.XPATH,
                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[4]/div[2]/fieldset/div/'
