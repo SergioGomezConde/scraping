@@ -87,8 +87,7 @@ for elemento in elementos:
             'porcentaje': porcentaje_asignatura,
             'plan': plan_asignatura,
             'codigo': codigo_asignatura,
-            'enlace': enlace_asignatura,
-            'enlace_participantes': enlace_participantes
+            'enlace': enlace_asignatura
         })
 
         i = i + 1
