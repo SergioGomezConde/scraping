@@ -95,7 +95,7 @@ for elemento in elementos:
 
         i = i + 1
 
-for subject in contenidoJSON['asignaturas']:
+for elemento in elementos:
     driver.get(subject['enlace_participantes'])
 
     numero_participantes = driver.find_element(by=By.XPATH,
