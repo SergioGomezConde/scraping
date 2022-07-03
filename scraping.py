@@ -80,8 +80,6 @@ for elemento in elementos:
         plan_asignatura = elemento.text.split('-')[2]
         codigo_asignatura = elemento.text.split('-')[3]
         enlace_asignatura = elemento.get_attribute('href')
-        enlace_participantes = enlace_asignatura.split('course/view')[0] + "user/index" + \
-                               enlace_asignatura.split('course/view')[1]
         porcentaje_asignatura = porcentajes[i].get_attribute('data-progress')
 
         contenidoJSON['asignaturas'].append({
@@ -95,16 +93,6 @@ for elemento in elementos:
 
         i = i + 1
 
-for elemento in elementos:
-    driver.get(subject['enlace_participantes'])
-
-    numero_participantes = driver.find_element(by=By.XPATH,
-                                               value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[3]/form/div/p').text.split(
-        ' ')[0]
-
-    contenidoJSON['asignaturas'].append({
-        'numero_participantes': numero_participantes
-    })
 
 # Acceso a la seccion de detalles
 driver.find_element(by=By.XPATH,
