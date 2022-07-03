@@ -158,18 +158,17 @@ contenidoJSON['numero_mensajes'].append({
 })
 
 j = 1
+
 while j <= 3:
-    autor_mensaje = driver.find_element(by=By.XPATH,
-                                        value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[2]/div[2]/a[' + str(
-                                            j) + ']/div[1]/div/strong').text
 
-    contenido_mensaje = driver.find_element(by=By.XPATH,
-                                            value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[2]/div[2]/a[' + str(
-                                                j) + ']/div[1]/p/span').text
+    ruta_base_mensajes = '/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[2]/div[2]/a[' + str(
+        j)
 
-    fecha_mensaje = driver.find_element(by=By.XPATH,
-                                        value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[2]/div[2]/a[' + str(
-                                            j) + ']/div[2]/div[1]').text
+    autor_mensaje = driver.find_element(by=By.XPATH, value=ruta_base_mensajes + ']/div[1]/div/strong').text
+
+    contenido_mensaje = driver.find_element(by=By.XPATH, value=ruta_base_mensajes + ']/div[1]/p/span').text
+
+    fecha_mensaje = driver.find_element(by=By.XPATH, value=ruta_base_mensajes + ']/div[2]/div[1]').text
 
     fecha_mensaje_separada = fecha_mensaje.split("/")
 
@@ -179,6 +178,8 @@ while j <= 3:
 
     mes_fecha_mensaje = fecha_mensaje_separada[1]
     anio_fecha_mensaje = "20" + fecha_mensaje_separada[2]
+
+    fecha_mensaje = dia_fecha_mensaje + "/" + mes_fecha_mensaje + "/" + anio_fecha_mensaje
 
     contenidoJSON['mensajes'].append({
         'autor': formatear_nombre(autor_mensaje),
