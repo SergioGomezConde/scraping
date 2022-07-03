@@ -163,8 +163,7 @@ driver.find_element(by=By.XPATH,
                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[2]/div[2]/fieldset/div/'
                           'label[1]/input').click()
 driver.find_element(by=By.XPATH,
-                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/'
-                          'label[5]/input').click()
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/label[4]/input').click()
 
 time.sleep(2)
 
