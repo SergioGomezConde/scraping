@@ -171,6 +171,15 @@ while j <= 3:
                                         value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[2]/div[2]/a[' + str(
                                             j) + ']/div[2]/div[1]').text
 
+    # fecha_mensaje_separada = fecha_mensaje.split("/")
+    #
+    # dia_fecha_mensaje = fecha_mensaje_separada[0]
+    # if int(dia_fecha_mensaje) < 10:
+    #     dia_fecha_mensaje = "0" + dia_fecha_mensaje
+    #
+    # mes_fecha_mensaje = fecha_mensaje_separada[1]
+    # anio_fecha_mensaje = "20" + fecha_mensaje_separada[2]
+
     contenidoJSON['mensajes'].append({
         'autor': autor_mensaje,
         'contenido': contenido_mensaje,
