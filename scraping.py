@@ -101,130 +101,129 @@ for elemento in elementos:
 
         i = i + 1
 
-        print(driver.find_element(by=By.XPATH, value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[3]/form/div/p'))
+        print(driver.find_element(by=By.XPATH,
+                                  value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[3]/form/div/p'))
 
-        driver.close() # BORRAR
+# Acceso a la seccion de detalles
+driver.find_element(by=By.XPATH,
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[2]/a').click()
 
-# # Acceso a la seccion de detalles
-# driver.find_element(by=By.XPATH,
-#                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[2]/a').click()
-#
-# # Obtencion del email
-# time.sleep(2)
-# email = driver.find_element(by=By.XPATH,
-#                             value='/html/body/div[4]/div[2]/div/div/section/'
-#                                   'div/div/div/div[2]/div/div/div/div[2]/div/div/div/section[1]/div/ul/li[2]/dl/dd/a') \
-#     .text
-#
-# # Almacenamiento de la informacion en el fichero JSON
-# contenidoJSON['usuario'].append({
-#     'nombre': formatear_nombre(nombre_perfil),
-#     'email': email
-# })
-#
-# # Acceso a la seccion de mensajes
-# driver.get('https://campusvirtual.uva.es/message/index.php')
-#
-# # Obtencion del numero de mensajes totales sin leer
-# time.sleep(10)
-# numeroMensajes = str(
-#     driver.find_element(by=By.XPATH, value='/html/body/nav/ul[2]/div[3]/a/div').get_attribute('aria-label').split(' ')[
-#         1])
-#
-# time.sleep(20)
-#
-# # Obtencion de los distintos numeros de mensajes
-# xpath_base = '/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/'
-#
-# total_destacados = str(driver.find_element(by=By.XPATH,
-#                                            value=xpath_base + 'div[1]/div[1]/button/small').get_attribute(
-#     'aria-label').split(' ')[0])
-#
-# destacados_sin_leer = str(driver.find_element(by=By.XPATH,
-#                                               value=xpath_base + 'div[1]/div[1]/button/span[5]').get_attribute(
-#     'aria-label').split(' ')[1])
-#
-# total_grupo = str(driver.find_element(by=By.XPATH,
-#                                       value=xpath_base + 'div[2]/div[1]/button/small').get_attribute(
-#     'aria-label').split(' ')[0])
-#
-# grupo_sin_leer = str(driver.find_element(by=By.XPATH,
-#                                          value=xpath_base + 'div[2]/div[1]/button/span[5]').get_attribute(
-#     'aria-label').split(' ')[1])
-#
-# total_privados = str(driver.find_element(by=By.XPATH,
-#                                          value=xpath_base + 'div[3]/div[1]/button/small').get_attribute(
-#     'aria-label').split(' ')[0])
-#
-# privados_sin_leer = str(driver.find_element(by=By.XPATH,
-#                                             value=xpath_base + 'div[3]/div[1]/button/span[5]').get_attribute(
-#     'aria-label').split(' ')[1])
-#
-# # Almacenamiento de la informacion en el fichero JSON
-# contenidoJSON['numero_mensajes'].append({
-#     'totales_sin_leer': str(numeroMensajes),
-#     'total_destacados': total_destacados,
-#     'destacados_sin_leer': destacados_sin_leer,
-#     'total_grupo': total_grupo,
-#     'grupo_sin_leer': grupo_sin_leer,
-#     'total_privados': total_privados,
-#     'privados_sin_leer': privados_sin_leer
-# })
-#
-# driver.get('https://campusvirtual.uva.es/calendar/export.php?')
-#
-# driver.find_element(by=By.XPATH,
-#                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[2]/div[2]/fieldset/div/'
-#                           'label[1]/input').click()
-# driver.find_element(by=By.XPATH,
-#                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/'
-#                           'label[5]/input').click()
-#
-# time.sleep(2)
-#
-# driver.find_element(by=By.XPATH,
-#                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[4]/div[2]/fieldset/div/'
-#                           'div[2]/span/input').click()
-#
-# time.sleep(5)
-#
-# c = open('icalexport.ics', 'rb')
-# calendario = Calendar.from_ical(c.read())
-# for vevent in calendario.walk('vevent'):
-#     tmp = vevent.decoded('dtstart')
-#     dateStart = str(tmp.astimezone().strftime('%Y-%m-%d %H:%M')).split(" ")
-#     nombre_a_guardar = vevent.get('summary')
-#     fecha = dateStart[0].split("-")
-#     numero_dia = fecha[2]
-#     numero_mes = fecha[1]
-#     numero_anio = fecha[0]
-#     fecha_a_guardar = numero_dia + "/" + numero_mes + "/" + numero_anio
-#     hora = dateStart[1].split(":")
-#     numero_hora = hora[0]
-#     numero_minuto = hora[1]
-#     hora_a_guardar = numero_hora + ":" + numero_minuto
-#
-#     numero_dia_a_comparar = int(numero_dia)
-#     numero_mes_a_comparar = int(numero_mes)
-#     numero_anio_a_comparar = int(numero_anio)
-#     numero_hora_a_comparar = int(numero_hora)
-#     numero_minuto_a_comparar = int(numero_minuto)
-#     now = datetime.now()
-#
-#     if (numero_anio_a_comparar > now.year) or \
-#             ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar > now.month)) or \
-#             ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
-#                     numero_dia_a_comparar > now.day)) or \
-#             ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
-#                     numero_dia_a_comparar == now.day) and (numero_hora_a_comparar > now.hour)) or \
-#             ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
-#                     numero_dia_a_comparar == now.day) and (numero_hora_a_comparar == now.hour) and (
-#                      numero_minuto_a_comparar > now.minute)):
-#         contenidoJSON['eventos'].append({
-#             'nombre': nombre_a_guardar,
-#             'fecha': fecha_a_guardar,
-#             'hora': hora_a_guardar
-#         })
+# Obtencion del email
+time.sleep(2)
+email = driver.find_element(by=By.XPATH,
+                            value='/html/body/div[4]/div[2]/div/div/section/'
+                                  'div/div/div/div[2]/div/div/div/div[2]/div/div/div/section[1]/div/ul/li[2]/dl/dd/a') \
+    .text
+
+# Almacenamiento de la informacion en el fichero JSON
+contenidoJSON['usuario'].append({
+    'nombre': formatear_nombre(nombre_perfil),
+    'email': email
+})
+
+# Acceso a la seccion de mensajes
+driver.get('https://campusvirtual.uva.es/message/index.php')
+
+# Obtencion del numero de mensajes totales sin leer
+time.sleep(10)
+numeroMensajes = str(
+    driver.find_element(by=By.XPATH, value='/html/body/nav/ul[2]/div[3]/a/div').get_attribute('aria-label').split(' ')[
+        1])
+
+time.sleep(20)
+
+# Obtencion de los distintos numeros de mensajes
+xpath_base = '/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/'
+
+total_destacados = str(driver.find_element(by=By.XPATH,
+                                           value=xpath_base + 'div[1]/div[1]/button/small').get_attribute(
+    'aria-label').split(' ')[0])
+
+destacados_sin_leer = str(driver.find_element(by=By.XPATH,
+                                              value=xpath_base + 'div[1]/div[1]/button/span[5]').get_attribute(
+    'aria-label').split(' ')[1])
+
+total_grupo = str(driver.find_element(by=By.XPATH,
+                                      value=xpath_base + 'div[2]/div[1]/button/small').get_attribute(
+    'aria-label').split(' ')[0])
+
+grupo_sin_leer = str(driver.find_element(by=By.XPATH,
+                                         value=xpath_base + 'div[2]/div[1]/button/span[5]').get_attribute(
+    'aria-label').split(' ')[1])
+
+total_privados = str(driver.find_element(by=By.XPATH,
+                                         value=xpath_base + 'div[3]/div[1]/button/small').get_attribute(
+    'aria-label').split(' ')[0])
+
+privados_sin_leer = str(driver.find_element(by=By.XPATH,
+                                            value=xpath_base + 'div[3]/div[1]/button/span[5]').get_attribute(
+    'aria-label').split(' ')[1])
+
+# Almacenamiento de la informacion en el fichero JSON
+contenidoJSON['numero_mensajes'].append({
+    'totales_sin_leer': str(numeroMensajes),
+    'total_destacados': total_destacados,
+    'destacados_sin_leer': destacados_sin_leer,
+    'total_grupo': total_grupo,
+    'grupo_sin_leer': grupo_sin_leer,
+    'total_privados': total_privados,
+    'privados_sin_leer': privados_sin_leer
+})
+
+driver.get('https://campusvirtual.uva.es/calendar/export.php?')
+
+driver.find_element(by=By.XPATH,
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[2]/div[2]/fieldset/div/'
+                          'label[1]/input').click()
+driver.find_element(by=By.XPATH,
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/'
+                          'label[5]/input').click()
+
+time.sleep(2)
+
+driver.find_element(by=By.XPATH,
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[4]/div[2]/fieldset/div/'
+                          'div[2]/span/input').click()
+
+time.sleep(5)
+
+c = open('icalexport.ics', 'rb')
+calendario = Calendar.from_ical(c.read())
+for vevent in calendario.walk('vevent'):
+    tmp = vevent.decoded('dtstart')
+    dateStart = str(tmp.astimezone().strftime('%Y-%m-%d %H:%M')).split(" ")
+    nombre_a_guardar = vevent.get('summary')
+    fecha = dateStart[0].split("-")
+    numero_dia = fecha[2]
+    numero_mes = fecha[1]
+    numero_anio = fecha[0]
+    fecha_a_guardar = numero_dia + "/" + numero_mes + "/" + numero_anio
+    hora = dateStart[1].split(":")
+    numero_hora = hora[0]
+    numero_minuto = hora[1]
+    hora_a_guardar = numero_hora + ":" + numero_minuto
+
+    numero_dia_a_comparar = int(numero_dia)
+    numero_mes_a_comparar = int(numero_mes)
+    numero_anio_a_comparar = int(numero_anio)
+    numero_hora_a_comparar = int(numero_hora)
+    numero_minuto_a_comparar = int(numero_minuto)
+    now = datetime.now()
+
+    if (numero_anio_a_comparar > now.year) or \
+            ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar > now.month)) or \
+            ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
+                    numero_dia_a_comparar > now.day)) or \
+            ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
+                    numero_dia_a_comparar == now.day) and (numero_hora_a_comparar > now.hour)) or \
+            ((numero_anio_a_comparar == now.year) and (numero_mes_a_comparar == now.month) and (
+                    numero_dia_a_comparar == now.day) and (numero_hora_a_comparar == now.hour) and (
+                     numero_minuto_a_comparar > now.minute)):
+        contenidoJSON['eventos'].append({
+            'nombre': nombre_a_guardar,
+            'fecha': fecha_a_guardar,
+            'hora': hora_a_guardar
+        })
 
 with open(ficheroJSON, 'w') as ficheroDatosJSON:
     json.dump(contenidoJSON, ficheroDatosJSON, indent=4)
