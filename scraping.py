@@ -160,10 +160,16 @@ contenidoJSON['numero_mensajes'].append({
 j = 1
 while j <= 3:
     autor_mensaje = driver.find_element(by=By.XPATH,
-                                        value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[2]/div[2]/a[' + str(j) + ']/div[1]/div/strong').text
+                                        value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[2]/div[2]/a[' + str(
+                                            j) + ']/div[1]/div/strong').text
+
+    contenido_mensaje = driver.find_element(by=By.XPATH,
+                                            value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[2]/div[2]/a[' + str(
+                                                j) + ']/div[1]/p/span').text
 
     contenidoJSON['mensajes'].append({
-        'autor': autor_mensaje
+        'autor': autor_mensaje,
+        'contenido': contenido_mensaje
     })
 
     j = j + 1
