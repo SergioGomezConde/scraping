@@ -84,25 +84,27 @@ for elemento in elementos:
                                enlace_asignatura.split('course/view')[1]
         porcentaje_asignatura = porcentajes[i].get_attribute('data-progress')
 
-        driver.get(enlace_participantes)
-        # numero_participantes = driver.find_element(by=By.XPATH,
-        #                                            value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[3]/form/div/p').text.split(
-        #     ' ')[0]
-
         contenidoJSON['asignaturas'].append({
             'nombre': nombre_asignatura,
             'porcentaje': porcentaje_asignatura,
             'plan': plan_asignatura,
             'codigo': codigo_asignatura,
-            # 'numero_participantes': numero_participantes,
             'enlace': enlace_asignatura,
             'enlace_participantes': enlace_participantes
         })
 
         i = i + 1
 
-        print(driver.find_element(by=By.XPATH,
-                                  value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[3]/form/div/p').text)
+for subject in contenidoJSON['asignaturas']:
+    driver.get(subject['enlace_participantes'])
+
+    numero_participantes = driver.find_element(by=By.XPATH,
+                                               value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[3]/form/div/p').text.split(
+        ' ')[0]
+
+    contenidoJSON['asignaturas'].append({
+        'numero_participantes': numero_participantes
+    })
 
 # Acceso a la seccion de detalles
 driver.find_element(by=By.XPATH,
