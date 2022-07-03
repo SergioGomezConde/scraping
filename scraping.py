@@ -161,8 +161,8 @@ j = 1
 
 while j <= 3:
 
-    ruta_base_mensajes = '/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]/div/div[3]/div[2]/div[2]/a[' + str(
-        j)
+    ruta_base_mensajes = '/html/body/div[4]/div[2]/div/div/section/div/div/div/div/div/div/div[1]/div/div[2]/div[1]' \
+                         '/div/div[3]/div[2]/div[2]/a[' + str(j)
 
     autor_mensaje = driver.find_element(by=By.XPATH, value=ruta_base_mensajes + ']/div[1]/div/strong').text
 
@@ -195,7 +195,8 @@ driver.find_element(by=By.XPATH,
                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[2]/div[2]/fieldset/div/'
                           'label[1]/input').click()
 driver.find_element(by=By.XPATH,
-                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/label[4]/input').click()
+                    value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[3]/div[2]/fieldset/div/'
+                          'label[4]/input').click()
 
 time.sleep(2)
 
