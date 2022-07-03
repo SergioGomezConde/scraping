@@ -1,16 +1,15 @@
 import json
 import time
+from datetime import datetime
 
+from icalendar import Calendar
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 
+# Funcion que formatea el nombre obtenido desde Campus para que sea mas legible
 def formatear_nombre(nombre_a_formatear):
-    """
-    :param nombre_a_formatear: nombre obtenido del Campus Virtual
-    :return: nombre con un formato mas legible
-    """
     nombres = nombre_a_formatear.split(' ')
     nombre_formateado = nombres[2].capitalize() + " " + nombres[0].capitalize() + " " + nombres[1].split(',')[
         0].capitalize()
@@ -92,7 +91,6 @@ for elemento in elementos:
 
         i = i + 1
 
-
 # Acceso a la seccion de detalles
 driver.find_element(by=By.XPATH,
                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div[2]/div/div/ul/li[2]/a').click()
@@ -161,7 +159,6 @@ contenidoJSON['numero_mensajes'].append({
 
 driver.get('https://campusvirtual.uva.es/calendar/export.php?')
 
-driver.implicitly_wait(5)
 driver.find_element(by=By.XPATH,
                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[2]/div[2]/fieldset/div/'
                           'label[1]/input').click()
