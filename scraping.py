@@ -10,9 +10,9 @@ from selenium.webdriver.common.by import By
 
 # Funcion que formatea el nombre obtenido desde Campus para que sea mas legible
 def formatear_nombre(nombre_a_formatear):
-    nombres = nombre_a_formatear.split(' ')
-    nombre_formateado = nombres[2].capitalize() + " " + nombres[0].capitalize() + " " + nombres[1].split(',')[
-        0].capitalize()
+    nombre_separado = nombre_a_formatear.split(", ")
+    nombre_en_minusculas = nombre_separado[1] + " " + nombre_separado[0]
+    nombre_formateado = nombre_en_minusculas.title()
 
     return nombre_formateado
 
