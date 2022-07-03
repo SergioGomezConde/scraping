@@ -167,6 +167,7 @@ driver.find_element(by=By.XPATH,
 
 time.sleep(2)
 
+
 driver.find_element(by=By.XPATH,
                     value='/html/body/div[4]/div[2]/div/div/section/div/div/div/div/form/div[4]/div[2]/fieldset/div/'
                           'div[2]/span/input').click()
